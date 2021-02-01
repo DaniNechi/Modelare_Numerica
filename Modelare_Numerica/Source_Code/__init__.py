@@ -10,15 +10,16 @@ MAX_SIZE = 50 # The NxN matrix
 
 board1 = {(39, 40),(39, 41),(40, 39),(40, 40),(41, 40)} # The board can be given as dots
 
-board2 = {(10,10,"Glider"),(39, 40, "Block"),(12,5, "Bee-hive"),(20,20,"Blinker"),
-          (10, 30, "Toad"),(25, 25, "Eater")} # Or as figures and X_start & Y_start
+board2 = {(10,10,"Glider"),(39, 40, "Block"),(15,15, "Bee-hive"),(20,20,"Blinker"),
+          (10, 30, "Toad"),(25, 25, "Eater"), (25, 40, "Loaf"), (15, 40, "LWSS"),
+          (5, 40, "Boat")} # Or as figures and X_start & Y_start - check Configuration_Board.py
 
-board2 = The_Board_Builder().parse_grid(board2) # Either given board formation, it is process and converted to
-                                                # corresponding dots
+board_builded = The_Board_Builder().parse_grid(board2)#(board1) # Either given board formation, it is process and converted
+                                                # to corresponding dots
 
 rules = SparseSetRules() # Instantiate rule class; For a better performance, a sparse board was chosen as to iterate
                         #  only over the points of interest and not the whole board
-game = Game(SparseSetState(board2), rules,MAX_SIZE) # instantiate  game class according to the rules, matrix_size and Sparse
+game = Game(SparseSetState(board_builded), rules,MAX_SIZE) # instantiate  game class according to the rules, matrix_size and Sparse
 t = time.time() # Runtime
 time_delay = 0.2
 game.run_game(MAX_ITER, time_delay) # Play the game according max no iterations and the time delay between frames

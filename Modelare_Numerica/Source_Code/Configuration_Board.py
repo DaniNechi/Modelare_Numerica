@@ -20,34 +20,34 @@ class The_Board_Builder:
             piece_points.append((x_start, y_start))
 
         if piece_name == "Eater":
-            piece_points.append((x_start,y_start ))
-            piece_points.append((x_start+1, y_start ))
-            piece_points.append((x_start, y_start -1 ))
-            piece_points.append((x_start+2, y_start - 1))
-            piece_points.append((x_start+2, y_start - 2))
-            piece_points.append((x_start+2, y_start - 3))
-            piece_points.append((x_start + 3, y_start - 3))
+            piece_points.append((x_start+2,y_start ))
+            piece_points.append((x_start+3, y_start ))
+            piece_points.append((x_start+1, y_start +1 ))
+            piece_points.append((x_start+3, y_start + 1))
+            piece_points.append((x_start+1, y_start + 2))
+            piece_points.append((x_start, y_start + 3))
+            piece_points.append((x_start + 1, y_start + 3))
 
         if piece_name == "Toad":
             piece_points.append((x_start+1,y_start ))
             piece_points.append((x_start+2, y_start ))
             piece_points.append((x_start+3, y_start ))
-            piece_points.append((x_start, y_start - 1))
-            piece_points.append((x_start+1, y_start - 1))
-            piece_points.append((x_start+2, y_start - 1))
+            piece_points.append((x_start, y_start + 1))
+            piece_points.append((x_start+1, y_start + 1))
+            piece_points.append((x_start+2, y_start + 1))
 
         if piece_name == "Glider":
-            piece_points.append((x_start,y_start))
-            piece_points.append((x_start+1, y_start))
-            piece_points.append((x_start + 2, y_start))
-            piece_points.append((x_start+2, y_start - 1))
-            piece_points.append((x_start+1, y_start - 2))
+            piece_points.append((x_start+1,y_start))
+            piece_points.append((x_start+1, y_start+1))
+            piece_points.append((x_start + 2, y_start+1))
+            piece_points.append((x_start, y_start + 2))
+            piece_points.append((x_start+2, y_start + 2))
 
         if piece_name == "Block":
             piece_points.append((x_start,y_start))
             piece_points.append((x_start+1, y_start))
-            piece_points.append((x_start, y_start - 1))
-            piece_points.append((x_start+1, y_start - 1))
+            piece_points.append((x_start, y_start + 1))
+            piece_points.append((x_start+1, y_start + 1))
 
         if piece_name == "Blinker":
             piece_points.append((x_start,y_start))
@@ -56,20 +56,47 @@ class The_Board_Builder:
 
         if piece_name == "Bee-hive":
             piece_points.append((x_start + 1 , y_start))
-            piece_points.append((x_start + 2, y_start))
-            piece_points.append((x_start, y_start - 1))
-            piece_points.append((x_start +3, y_start - 1))
-            piece_points.append((x_start - 2 , y_start - 1))
-            piece_points.append((x_start +1, y_start-2))
-            piece_points.append((x_start + 2, y_start - 2))
+            piece_points.append((x_start , y_start+1))
+            piece_points.append((x_start+2, y_start + 1))
+            piece_points.append((x_start , y_start + 2))
+            piece_points.append((x_start +2 , y_start + 2))
+            piece_points.append((x_start +1, y_start+3))
+
 
         if piece_name == "Loaf":
             piece_points.append((x_start + 1, y_start))
             piece_points.append((x_start + 2, y_start))
+            piece_points.append((x_start, y_start + 1))
+            piece_points.append((x_start + 3, y_start + 1))
+            piece_points.append((x_start +1, y_start + 2))
+            piece_points.append((x_start + 3, y_start + 2))
+            piece_points.append((x_start + 2, y_start + 3))
+
+        if piece_name == "Ship":
+            piece_points.append((x_start, y_start))
+            piece_points.append((x_start + 1, y_start))
             piece_points.append((x_start, y_start - 1))
-            piece_points.append((x_start + 3, y_start - 1))
-            piece_points.append((x_start - 2, y_start - 1))
-            piece_points.append((x_start + 1, y_start - 2))
-            piece_points.append((x_start + 2, y_start - 2))
+            piece_points.append((x_start + 2, y_start + 1))
+            piece_points.append((x_start + 1, y_start + 2))
+            piece_points.append((x_start + 2, y_start + 2))
+
+        if piece_name == "Boat":
+            piece_points.append((x_start + 1, y_start))
+            piece_points.append((x_start, y_start + 1))
+            piece_points.append((x_start + 2, y_start + 1))
+            piece_points.append((x_start + 2, y_start + 1))
+            piece_points.append((x_start + 1, y_start + 2))
+            piece_points.append((x_start + 2, y_start + 2))
+
+        if piece_name == "LWSS": # Light Weight Space Ship
+            piece_points.append((x_start + 1, y_start))
+            piece_points.append((x_start + 2, y_start ))
+            piece_points.append((x_start + 3, y_start))
+            piece_points.append((x_start, y_start + 1))
+            piece_points.append((x_start + 3, y_start + 1))
+            piece_points.append((x_start + 3, y_start + 2))
+            piece_points.append((x_start + 3, y_start + 3))
+            piece_points.append((x_start , y_start + 4))
+            piece_points.append((x_start + 2, y_start + 4))
 
         return piece_points
