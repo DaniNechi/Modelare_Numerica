@@ -5,6 +5,12 @@ class Stepper:
 
     def __init__(self):
         self.M = ((-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1))
+        """
+        * * *
+        * x *  - workaround for faster indexing
+        * * *
+        """
+
 
     def calc_neighs(self, field, i, j):
         """ Calculate number of neighbors alive (assuming square field) """
@@ -14,7 +20,7 @@ class Stepper:
             row_idx = m[0] + i
             col_idx = m[1] + j
             if (0 <= row_idx < n) and (0 <= col_idx < n):
-                if row_idx >= 20 or col_idx >= 20:
+                if row_idx >= 20 or col_idx >= 20: # Don't over index
                    continue
                 value = field[row_idx][col_idx]
                 if value.any():
@@ -30,7 +36,7 @@ class Stepper:
             for i in range(n):
                 for j in range(n):
                     neighs = self.calc_neighs(cur_field, i, j)
-                    if i >= 20 or j >= 20:
+                    if i >= 20 or j >= 20: # Don't over index
                         continue
                     value = cur_field[i][j]
                     if value.any() and neighs == 2:

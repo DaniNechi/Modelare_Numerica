@@ -2,7 +2,7 @@ import numpy as np
 from Modelare_Numerica.Source_Code.Mutation import Mutate
 from Modelare_Numerica.Source_Code.Fitness import Fitness
 from Modelare_Numerica.Source_Code.Selection import Selector
-
+import math as Math
 class Evolution:
 
     def __init__(self):
@@ -20,16 +20,16 @@ class Evolution:
         :param retain_frac: percent of top individuals to proceed into the next genetation
         :param retain_random: chance of retaining sub-optimal individual
         :param mutate_chance: chance of mutating the particular individual
-        :param display:
+        :param display: used for updating the plots
         :return: new generation of the same size
         """
         scores = self.fitness.score_population(population, target, delta)
         next_population = self.selector.selection(population, scores, retain_frac=retain_frac, retain_random=retain_random)
         best_score_index = scores.index(max(scores))
         if self.first is False:
+            self.first = True
             display.plot_result(population[best_score_index], "21", "GA solution start")
         else:
-            self.first = True
             display.plot_result(population[best_score_index], "22", "GA solution running/end")
         # mutate everyone expecting for the best candidate
         for iteration, gene in enumerate(next_population):

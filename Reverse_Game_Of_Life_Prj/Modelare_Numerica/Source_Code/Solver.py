@@ -20,13 +20,13 @@ class Solve:
             :param n_generations: number of evolution generations. Overrides initialization value if specified
             :return: 20x20 array that represents the best start field found and associated fitness value
         """
-        best_gen = 0
+        best_gen = 0 # Keep track of best generation performance
         population = self.fitness.generate_population(population_size)
         for generation in range(no_generations):
             population = self.evolution.evolve(population, target, delta, self.display)
-            score_list = self.fitness.score_population(population, target, delta)
-            sorted_indices = np.argsort(score_list)[::-1]
-            best_score_index = sorted_indices[0]
+            score_list = self.fitness.score_population(population, target, delta) # Recompute the new generation score
+            sorted_indices = np.argsort(score_list)[::-1] # Sort score_list
+            best_score_index = sorted_indices[0] # Get index of best score
             score1 = score_list[best_score_index]
             if score1 > best_gen:
                 best_gen = score1
@@ -34,7 +34,7 @@ class Solve:
             if generation == 0:
                 self.display.plot_result(population[best_score_index], "21", "GA solution start")
                 print("Generation ", generation, ": ", best_gen)
-
+            input("Press Enter to continue...")  # Wait for user input to end program
         return population[0]
 
 

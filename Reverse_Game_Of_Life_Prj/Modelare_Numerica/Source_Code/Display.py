@@ -7,7 +7,6 @@ import time
 class Display:
     def __init__(self, max_size):
         plt.ion()
-
         self.fig = plt.figure()
         self.ax11 = self.fig.add_subplot(221, facecolor='black')
         self.line11 = None
