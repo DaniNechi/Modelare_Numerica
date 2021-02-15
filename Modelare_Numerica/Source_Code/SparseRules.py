@@ -1,4 +1,5 @@
 class SparseSetRules:
+
     def apply_rules(self, grid, max_size,get_neighbours): # Apply game rules over the current board for the next cycle
         counter = {}
         for elem in grid:
@@ -11,7 +12,7 @@ class SparseSetRules:
                 else:
                     counter[n] += 1
         for c in counter:
-            if (counter[c] < 2 or  counter[c] > 3) :
+            if counter[c] < 2 or counter[c] > 3 :
                 grid.discard(c)
             if counter[c] == 3:
                 grid.add(c)

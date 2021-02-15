@@ -1,4 +1,14 @@
+import numpy as np
+
 class The_Board_Builder:
+
+    def create_board(self, array):
+        matrix =  np.zeros(((20,20)),dtype=int)
+        for piece in array:
+            x = piece[0]
+            y = piece[1]
+            matrix[x][y] = 1
+        return matrix
 
     def parse_grid(self, grid): # Parses the list of tuples and return a set of points
         piece_list = []
@@ -13,9 +23,7 @@ class The_Board_Builder:
     # https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
     def build_pieces(self, x_start, y_start, piece_name): # Build every piece from points, according to wiki scheme,
                                                         #  x_start and y_start being the top-left most point
-
         piece_points = []
-
         if piece_name is None:
             piece_points.append((x_start, y_start))
 
@@ -38,7 +46,7 @@ class The_Board_Builder:
 
         if piece_name == "Glider":
             piece_points.append((x_start+1,y_start))
-            piece_points.append((x_start+1, y_start+1))
+            piece_points.append((x_start+1, y_start+2))
             piece_points.append((x_start + 2, y_start+1))
             piece_points.append((x_start, y_start + 2))
             piece_points.append((x_start+2, y_start + 2))

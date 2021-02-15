@@ -1,29 +1,41 @@
-from Modelare_Numerica.Source_Code.Game import Game
+from Modelare_Numerica.Source_Code.Stepper import Stepper
 from Modelare_Numerica.Source_Code.SparseRules import SparseSetRules
 from Modelare_Numerica.Source_Code.SparseState import SparseSetState
-import time
+from Modelare_Numerica.Source_Code.Solver import Solve
+from Modelare_Numerica.Source_Code.Fitness import Fitness
+from Modelare_Numerica.Source_Code.Display import Display
+
 from Modelare_Numerica.Source_Code.Configuration_Board import The_Board_Builder
 
+# 1. Init board
+# Y,X
+board3 = {(2,2,"Toad"),(2,15,"Block"),(4,17,"Block"),
+          (13,2),(19,10),(14,15,"Block"),(16,17,"Block")}
 
-MAX_ITER = 1500 # Number of game cycles
-MAX_SIZE = 50 # The NxN matrix
-
-board1 = {(39, 40),(39, 41),(40, 39),(40, 40),(41, 40)} # The board can be given as dots
-
-board2 = {(10,10,"Glider"),(39, 40, "Block"),(15,15, "Bee-hive"),(20,20,"Blinker"),
-          (10, 30, "Toad"),(25, 25, "Eater"), (25, 40, "Loaf"), (15, 40, "LWSS"),
-          (5, 40, "Boat")} # Or as figures and X_start & Y_start - check Configuration_Board.py
-
-board_builded = The_Board_Builder().parse_grid(board2)#(board1) # Either given board formation, it is process and converted
+board_builded = The_Board_Builder().parse_grid(board3)#(board1) # Either given board formation, it is process and converted
                                                 # to corresponding dots
+board = The_Board_Builder().create_board(board_builded)
 
-rules = SparseSetRules() # Instantiate rule class; For a better performance, a sparse board was chosen as to iterate
-                        #  only over the points of interest and not the whole board
-game = Game(SparseSetState(board_builded), rules,MAX_SIZE) # instantiate  game class according to the rules, matrix_size and Sparse
-t = time.time() # Runtime
-time_delay = 0.2
-game.run_game(MAX_ITER, time_delay) # Play the game according max no iterations and the time delay between frames
+# 2. Run it ~5 cycles to "warm up"
+warm_up = 5
 
+# Custom board
+#init_board, target_board = Fitness().generate_problem(board, warm_up)
 
-print(time.time()-t)
+# Default board
+init_board, target_board = Fitness().generate_problem_default(warm_up)
+
+display = Display(20)
+display.plot_result(init_board,"11","Target start")
+display.plot_result(target_board,"12","Target end")
+
+# 3. Use end state of warm up as target in solver
+population_size = 200
+no_generations = 600
+delta = 0
+solver = Solve(display)
+solver.solve(target_board, delta,population_size,no_generations)
+
+#print(time.time()-t)
 input("Press Enter to continue...") # Wait for user input to end program
+exit()
